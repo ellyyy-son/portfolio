@@ -10,7 +10,6 @@ import { CiStar } from "react-icons/ci";
 import { MdWorkspacePremium } from "react-icons/md";
 import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 import { GrSend } from "react-icons/gr";
-import { AnimatedGrainyBg } from "@/components/ui/animated-grainy-bg";
 
 
 
