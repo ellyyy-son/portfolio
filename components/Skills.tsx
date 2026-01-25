@@ -1,6 +1,6 @@
 import { BsFileBarGraph } from "react-icons/bs";
 import { SiTableau, SiPandas, SiNumpy, SiGraphite, SiPlotly, SiApachespark, SiApachehadoop, SiApachehive, SiPython, SiMysql, SiR, SiJavascript, SiCplusplus, SiGit,
-  SiReact, SiNextdotjs, SiFlask, SiDjango,SiNodedotjs, SiExpress, SiGooglebigquery
+  SiReact, SiNextdotjs, SiFlask, SiDjango,SiNodedotjs, SiExpress, SiGooglebigquery, SiScikitlearn, SiPytorch
   } from "react-icons/si";
 import { MdOutlineAutoGraph } from "react-icons/md";
 import { TabItem, Tabs } from "flowbite-react";
@@ -51,6 +51,16 @@ export default function Skills() {
             <div className="flex flex-col items-center justify-center gap-4">
               <h1>Plotly</h1>
               <SiPlotly size={40} className="text-[#00f0ff]"/>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h1>scikit-learn</h1>
+              <SiScikitlearn size={40} className="text-[#00f0ff]"/>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h1>PyTorch</h1>
+              <SiPytorch size={40} className="text-[#00f0ff]"/>
             </div>
           </div>
           <div className="flex flex-wrap mt-4 gap-6 justify-center">
