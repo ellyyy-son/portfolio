@@ -16,7 +16,7 @@ export default function Skills() {
   return (
     <Tabs aria-label="Default tabs" variant="pills"  className="justify-center">
       <TabItem active title="Business Intelligence" icon={TbBusinessplan}>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 items-center justify-center">
           <div className="flex flex-wrap mt-4 items-center justify-center gap-12">
             <div className="flex flex-col items-center justify-center gap-4">
               <h1>Power BI</h1>
@@ -63,7 +63,7 @@ export default function Skills() {
               <SiPytorch size={40} className="text-[#00f0ff]"/>
             </div>
           </div>
-          <div className="flex flex-wrap mt-4 gap-6 justify-center">
+          <div className="flex flex-wrap mt-4 gap-6 items-center justify-center">
             <span className="px-3 py-1 bg-[#00f0ff]/20 rounded-full text-white">Data Modeling</span>
             <span className="px-3 py-1 bg-[#00f0ff]/20 rounded-full text-white">Dashboard Design</span>
             <span className="px-3 py-1 bg-[#00f0ff]/20 rounded-full text-white">KPI Reporting</span>
