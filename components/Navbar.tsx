@@ -7,12 +7,10 @@ import { useState } from 'react';
 export default function Navbar() {
   return (
     <>
-      {/* Desktop / FullNav */}
       <div className="hidden lg:flex w-full">
         <FullNav />
       </div>
 
-      {/* Mobile / SmallNav */}
       <div className="flex lg:hidden w-full">
         <SmallNav />
       </div>
@@ -62,7 +60,7 @@ function SmallNav(){
         <CiStar size={60} className="text-[#00f0ff]" />
       </div>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-white">
+        <button onClick={() => setIsOpen(!isOpen)} className="text-4xl text-white">
           {isOpen ? "✖" : "☰"}
         </button>
       </nav>
