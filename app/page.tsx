@@ -175,7 +175,7 @@ export default function Home() {
       
 
         <div className='flex flex-col lg:flex-row justify-between items-center mt-20'>
-          <h1 className='font-bold text-xl text-white'>Elly Olegario</h1>
+          <h1 className='font-bold text-xl text-white'>Elly Olegario | ellysonolegario@gmail.com</h1>
           <Socials />
         </div>
       </div>

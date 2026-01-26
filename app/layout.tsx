@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Analytics />
-      <body className={jetbrainsMono.className}>
+      <body className="bg-black {jetbrainsMono.className}">
         {children}
       </body>
     </html>
