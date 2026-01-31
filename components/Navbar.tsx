@@ -1,3 +1,4 @@
+"use client"
 import '../app/globals.css';
 import Link from "next/link";
 import { CiStar } from "react-icons/ci";
@@ -28,7 +29,7 @@ function FullNav() {
 
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
         <Link
-          href=""
+          href="/"
           className="text-xl text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF]"
         >
           Professional
@@ -40,7 +41,7 @@ function FullNav() {
           Personal
         </Link>
         <Link
-          href=""
+          href="/contact"
           className="text-xl text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF]"
         >
           Contact
@@ -67,9 +68,9 @@ function SmallNav(){
 
       {isOpen && (
         <ul className="flex flex-col gap-4 items-center justify-center p-4">
-          <li><a href="" className="text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF] font-bold">Professional</a></li>
+          <li><a href="/" className="text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF] font-bold">Professional</a></li>
           <li><a href="" className="text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF] font-bold">Personal</a></li>
-          <li><a href="" className="text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF] font-bold">Contact</a></li>
+          <li><a href="/contact" className="text-white hover:underline hover:underline-offset-8 hover:text-[#00FFFF] font-bold">Contact</a></li>
         </ul>
       )}
     </div>

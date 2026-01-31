@@ -2,7 +2,7 @@ import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 
 export default function Skills() {
   return (
-    <div className="flex gap-6 justify-center mt-8">
+    <div className="flex gap-6 justify-center items-center">
       <a
         href="https://github.com/ellyyy-son"
         target="_blank"

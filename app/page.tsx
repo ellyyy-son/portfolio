@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Socials from "../components/Socials";
 import Skills from "../components/Skills";
 import TimelineChart from "../components/Timeline";
+import Footer from '@/components/Footer';
 import { IoSchoolOutline } from "react-icons/io5";
 import { FaCode } from "react-icons/fa6";
 import { FaRegIdCard } from "react-icons/fa";
@@ -15,7 +16,7 @@ import { GrSend } from "react-icons/gr";
 export default function Home() {
   return (
     <div className='flex flex-col items-center bg-black'>
-      <div className="min-h-screen font-sans bg-black max-w-[75%] mt-12 mb-12">
+      <div className="min-h-screen font-sans bg-black w-[85%] lg:w-[75%] mt-12 mb-12">
        <Navbar />
 
         <div className='min-h-[80vh] mt-24 mb-24 lg:mb-0'>
@@ -26,8 +27,8 @@ export default function Home() {
               <h1 className='text-6xl lg:text-7xl mt-4 text-[#00FFFF] font-bold'>Elly</h1>
               <h1 className='text-6xl lg:text-7xl mt-4 text-[#00FFFF] font-bold'>Olegario</h1>
               <h1 className='text-md lg:text-lg mt-10 text-center'>3 BS Computer Science | From the Philippines</h1>
-              <div className='flex flex-col lg:flex-row items-center lg:gap-10'>
-                <button onClick={() => window.open('/resume.pdf', '_blank')} className='border border-amber-50 p-4 rounded-4xl mt-10 w-4xs lg:w-3xs hover:bg-[#00FFFF]/80 hover:text-black text-md lg:text-xl font-bold'> 
+              <div className='flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-10 mt-10'>
+                <button onClick={() => window.open('/resume.pdf', '_blank')} className='border border-amber-50 p-4 rounded-4xl w-4xs lg:w-3xs hover:bg-[#00FFFF]/80 hover:text-black text-md lg:text-xl font-bold'> 
                   View CV &gt;
                 </button>
                 <Socials />
@@ -174,10 +175,7 @@ export default function Home() {
         </div>
       
 
-        <div className='flex flex-col lg:flex-row justify-between items-center mt-20'>
-          <h1 className='font-bold text-xl text-white text-center'>Elly Olegario | ellysonolegario@gmail.com</h1>
-          <Socials />
-        </div>
+        <Footer />
       </div>
     </div>
   );
