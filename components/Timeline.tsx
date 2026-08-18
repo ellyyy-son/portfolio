@@ -8,15 +8,34 @@ import {
   TimelineTitle,
 } from "flowbite-react";
 
+/* =========================
+   Types
+========================= */
 
-const professionalExperience = [
+type Experience = {
+  date: string;
+  title: string;
+  company: string;
+  description: string[];
+};
+
+type TimelineChartProps = {
+  type?: "professional" | "organizational";
+};
+
+
+/* =========================
+   Professional Experience
+========================= */
+
+const professionalExperience: Experience[] = [
   {
     date: "September 2026 - Present",
     title: "Supply Chain Intern - Business Week 2026",
     company: "Unilever Philippines Inc.",
     description: [
       "Selected as 1 of only 35 participants from a pool of 6,000+ applicants nationwide to join Unilever Philippines' Business Week 2026.",
-      "Selected for an internship under Unilever Personal Care, supporting the Integrated Planning Team."
+      "Selected for an internship under Unilever Personal Care, supporting the Integrated Planning Team.",
     ],
   },
 
@@ -44,7 +63,11 @@ const professionalExperience = [
 ];
 
 
-const organizationalExperience = [
+/* =========================
+   Organizational Experience
+========================= */
+
+const organizationalExperience: Experience[] = [
   {
     date: "October 2025 - Present",
     title: "IT Skills and Development Officer",
@@ -68,13 +91,18 @@ const organizationalExperience = [
 ];
 
 
-export default function TimelineChart({ type = "professional" }) {
+/* =========================
+   Timeline Component
+========================= */
 
-  const experiences =
+export default function TimelineChart({
+  type = "professional",
+}: TimelineChartProps) {
+
+  const experiences: Experience[] =
     type === "organizational"
       ? organizationalExperience
       : professionalExperience;
-
 
   return (
     <Timeline className="flex flex-col gap-8">
@@ -82,7 +110,7 @@ export default function TimelineChart({ type = "professional" }) {
       {experiences.map((experience, index) => (
 
         <TimelineItem
-          key={index}
+          key={`${experience.company}-${experience.title}-${index}`}
           className="rounded-2xl p-6 transition-all duration-300 hover:bg-[#2d3030]"
         >
 

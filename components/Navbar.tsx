@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 
-const LINKS = [
+type NavLink = {
+  id: string;
+  label: string;
+};
+
+const LINKS: NavLink[] = [
   { id: "home", label: "Home" },
   { id: "profile", label: "Profile" },
   { id: "experience", label: "Experience" },
@@ -14,9 +19,9 @@ const LINKS = [
 ];
 
 export default function Navbar() {
-  const [active, setActive] = useState("home");
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string>("home");
+  const [open, setOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   /* =========================
      Track Scroll Position
@@ -45,10 +50,10 @@ export default function Navbar() {
   useEffect(() => {
     const sections = LINKS
       .map((link) => document.getElementById(link.id))
-      .filter(Boolean);
+      .filter((section): section is HTMLElement => section !== null);
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActive(entry.target.id);
@@ -74,7 +79,10 @@ export default function Navbar() {
      Smooth Scroll
   ========================= */
 
-  const goTo = (e, id) => {
+  const goTo = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
     e.preventDefault();
 
     setOpen(false);
@@ -148,6 +156,7 @@ export default function Navbar() {
           ========================= */}
 
           <button
+            type="button"
             onClick={() => setOpen((value) => !value)}
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 text-white transition-all duration-200 hover:border-[#00FFFF]/50 hover:bg-white/10 md:hidden"
             aria-label="Toggle navigation menu"

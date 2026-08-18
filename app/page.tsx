@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
+import Image from "next/image";
 import "./globals.css";
 
 import Navbar from "../components/Navbar";
@@ -23,7 +25,13 @@ import { HiArrowUpRight } from "react-icons/hi2";
    Reusable Components
 ========================= */
 
-function SectionHeading({ icon, label }) {
+function SectionHeading({
+  icon,
+  label,
+}: {
+  icon: ReactNode;
+  label: string;
+}) {
   return (
     <div className="flex flex-row items-center justify-center gap-4">
 
@@ -46,7 +54,14 @@ function PrimaryButton({
   icon,
   children,
   external = false,
+}: {
+  href?: string;
+  onClick?: () => void;
+  icon?: ReactNode;
+  children: ReactNode;
+  external?: boolean;
 }) {
+
   const classes =
     "group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#00FFFF]/60 hover:bg-[#00FFFF]/10 hover:shadow-[0_0_30px_-8px_#00FFFF] lg:text-base";
 
@@ -75,6 +90,7 @@ function PrimaryButton({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={classes}
     >
@@ -91,7 +107,15 @@ function ProjectCard({
   githubHref,
   visitHref,
   onVisit,
+}: {
+  title: string;
+  badges: string[];
+  description: string;
+  githubHref: string;
+  visitHref?: string;
+  onVisit?: () => void;
 }) {
+
   return (
     <article className="group relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#00FFFF]/40 lg:p-8">
 
@@ -136,7 +160,9 @@ function ProjectCard({
 
 
         {onVisit ? (
+
           <button
+            type="button"
             onClick={onVisit}
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-[#00FFFF]/60 hover:bg-[#00FFFF]/10"
           >
@@ -147,7 +173,9 @@ function ProjectCard({
 
             Visit
           </button>
+
         ) : (
+
           <a
             href={visitHref}
             target="_blank"
@@ -161,6 +189,7 @@ function ProjectCard({
 
             Visit
           </a>
+
         )}
 
       </div>
@@ -176,7 +205,8 @@ function ProjectCard({
 
 export default function Home() {
 
-  const [experienceType, setExperienceType] = useState("professional");
+  const [experienceType, setExperienceType] =
+    useState<string>("professional");
 
   return (
     <div className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-black">
@@ -308,10 +338,13 @@ export default function Home() {
 
                 <div className="absolute -inset-5 rounded-full bg-[#00FFFF]/20 blur-2xl" />
 
-                <img
+                <Image
                   className="relative h-60 w-60 rounded-full object-cover ring-2 ring-[#00FFFF]/60 ring-offset-8 ring-offset-black md:h-64 md:w-64 lg:h-72 lg:w-72"
                   src="/pic.jpeg"
                   alt="Elly Olegario"
+                  width={288}
+                  height={288}
+                  priority
                 />
 
               </div>
@@ -325,6 +358,7 @@ export default function Home() {
             ========================= */}
 
             <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-3 lg:mt-10">
+
 
               {/* Data Focus */}
 
@@ -377,10 +411,9 @@ export default function Home() {
 
           {/* =========================
               MAIN SECTIONS
-              EQUAL GAP BETWEEN EACH
           ========================= */}
 
-          <div className="flex flex-col mt-20 gap-32">
+          <div className="mt-20 flex flex-col gap-32">
 
 
             {/* =========================
@@ -480,7 +513,10 @@ export default function Home() {
               <div className="flex items-center rounded-2xl border border-white/10 bg-[#111414] p-1.5 backdrop-blur-sm">
 
                 <button
-                  onClick={() => setExperienceType("professional")}
+                  type="button"
+                  onClick={() =>
+                    setExperienceType("professional")
+                  }
                   className={`rounded-xl px-6 py-2.5 text-sm font-semibold transition-all duration-300 lg:px-8 ${
                     experienceType === "professional"
                       ? "bg-[#00FFFF] text-black shadow-[0_0_20px_-8px_#00FFFF]"
@@ -492,7 +528,10 @@ export default function Home() {
 
 
                 <button
-                  onClick={() => setExperienceType("organizational")}
+                  type="button"
+                  onClick={() =>
+                    setExperienceType("organizational")
+                  }
                   className={`rounded-xl px-6 py-2.5 text-sm font-semibold transition-all duration-300 lg:px-8 ${
                     experienceType === "organizational"
                       ? "bg-[#00FFFF] text-black shadow-[0_0_20px_-8px_#00FFFF]"
@@ -664,7 +703,7 @@ export default function Home() {
                   <div className="mt-3 flex flex-col gap-1">
 
                     <span className="text-xs italic text-white/60 lg:text-sm">
-                      Director's List Scholar
+                      Director&apos;s List Scholar
                     </span>
 
                     <span className="text-xs italic text-white/60 lg:text-sm">
