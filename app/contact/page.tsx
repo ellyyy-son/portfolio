@@ -4,14 +4,6 @@ import Navbar from "@/components/Navbar";
 import Form from "@/components/Form";
 import Footer from '@/components/Footer';
 import Socials from "@/components/Socials";
-import Skills from "@/components/Skills";
-import TimelineChart from "@/components/Timeline";
-import { IoSchoolOutline } from "react-icons/io5";
-import { FaCode } from "react-icons/fa6";
-import { FaRegIdCard } from "react-icons/fa";
-import { MdWorkspacePremium } from "react-icons/md";
-import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
-import { GrSend } from "react-icons/gr";
  
 
 export default function Home() {
