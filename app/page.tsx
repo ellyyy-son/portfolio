@@ -746,7 +746,7 @@ export default function Home() {
                 />
 
 
-                <p className="max-w-xl text-sm text-white/70 lg:text-lg">
+                <p className="text-sm text-white/70 lg:text-lg">
                   Interested in working together or just want to
                   connect? Reach me through the platforms below.
                 </p>
