@@ -303,7 +303,7 @@ export default function Home() {
                 </p>
 
                 <p className="mt-2 text-xs text-white/55 lg:text-sm">
-                  Focus on Data Science
+                  Fields of Interest
                 </p>
               </div>
 
