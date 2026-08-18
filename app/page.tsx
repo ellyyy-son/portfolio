@@ -621,7 +621,7 @@ export default function Home() {
                   label="Contact Me!"
                 />
 
-                <p className="max-w-xl text-sm text-white/70 lg:text-lg">
+                <p className="text-sm text-white/70 lg:text-lg">
                   Interested in working together or just want to
                   connect? Reach me through the platforms below.
                 </p>
@@ -645,7 +645,7 @@ export default function Home() {
 
               {/* Contact Form */}
 
-              <div className="flex w-full max-w-2xl flex-col items-center justify-center gap-6">
+              <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-6">
 
                 <h3 className="text-center text-xl font-bold tracking-tight text-white lg:text-2xl">
                   Answer the form below!

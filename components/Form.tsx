@@ -30,7 +30,7 @@ export default function ContactForm() {
 
 
   return (
-    <form onSubmit={onSubmit} className="w-full lg:w-[70%] mx-auto flex flex-col gap-6 rounded-2xl bg-white/10 p-8 text-white shadow-lg backdrop-blur">
+    <form onSubmit={onSubmit} className="w-full mx-auto flex flex-col gap-6 rounded-2xl bg-white/10 p-8 text-white shadow-lg backdrop-blur">
 
         {/* Name */}
         <div className="flex flex-col gap-1">
