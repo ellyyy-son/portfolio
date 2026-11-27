@@ -177,7 +177,7 @@ export default function BadgeCase() {
         {/* Details */}
         <div
           aria-live="polite"
-          className="mt-7 grid rounded-2xl border-2 border-ink bg-white p-5 shadow-[inset_0_0_0_3px_#ffffff,inset_0_0_0_5px_var(--color-lav-200)]"
+          className="mt-7 grid grid-cols-1 rounded-2xl border-2 border-ink bg-white p-5 shadow-[inset_0_0_0_3px_#ffffff,inset_0_0_0_5px_var(--color-lav-200)]"
         >
           {/* Every award (and the tip) sits in the same grid cell, so the
               panel is always as tall as the longest award */}
@@ -203,15 +203,13 @@ export default function BadgeCase() {
               <div
                 key={a.name}
                 aria-hidden={!visible}
-                className={`flex flex-col items-center gap-4 text-center [grid-area:1/1] sm:flex-row sm:items-start sm:text-left ${
+                className={`min-w-0 text-center [grid-area:1/1] sm:text-left ${
                   visible
                     ? "animate-in fade-in slide-in-from-bottom-1 duration-300"
                     : "invisible"
                 }`}
               >
-                <Badge award={a} size="sm" />
-
-                <div>
+                <div className="min-w-0">
                   <p className="font-pixel text-[8px] tracking-widest text-lav-600">
                     BADGE #{i + 1} OBTAINED!
                   </p>
@@ -222,7 +220,7 @@ export default function BadgeCase() {
                     {a.subtitle}
                   </p>
                   {a.callout && (
-                    <p className="mt-2 inline-block rounded-full bg-butter px-3 py-0.5 text-xs font-bold text-ink">
+                    <p className="mt-2 inline-block max-w-full rounded-full bg-butter px-3 py-0.5 text-xs font-bold text-ink">
                       {a.callout}
                     </p>
                   )}
