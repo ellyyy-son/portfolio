@@ -329,6 +329,50 @@
   opacity: 1;
 }
 
+/* uses transform (not translate) so it doesn't fight Tailwind's centering translate */
+@keyframes critter-hop {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-3px);
+  }
+  88% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ball-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-16deg);
+  }
+  45% {
+    transform: rotate(13deg);
+  }
+  70% {
+    transform: rotate(-7deg);
+  }
+  85% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes cursor-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
 @keyframes cursor-bob {
   0%,
   100% {
@@ -418,36 +462,7 @@
   opacity: 1;
 }
 
-@keyframes egg-wobble {
-  0%,
-  55%,
-  100% {
-    rotate: 0deg;
-  }
-  65% {
-    rotate: -9deg;
-  }
-  75% {
-    rotate: 7deg;
-  }
-  85% {
-    rotate: -4deg;
-  }
-  92% {
-    rotate: 2deg;
-  }
-}
-
-.animate-egg {
-  transform-origin: 50% 90%;
-  animation: egg-wobble 2.6s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .animate-egg {
-    animation: none;
-  }
-
   .holo-card {
     transform: none;
   }
@@ -464,24 +479,25 @@
     opacity 0.4s ease;
 }
 
+/* --lift lets a partly-pulled sword start its tug from where it already is */
 @keyframes sword-pull {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, var(--lift, 0px));
   }
   12% {
-    transform: translate(-0.7px, -0.5px);
+    transform: translate(-0.7px, calc(var(--lift, 0px) - 0.5px));
   }
   24% {
-    transform: translate(0.7px, -1px);
+    transform: translate(0.7px, calc(var(--lift, 0px) - 1px));
   }
   36% {
-    transform: translate(-0.7px, -1.5px);
+    transform: translate(-0.7px, calc(var(--lift, 0px) - 1.5px));
   }
   48% {
-    transform: translate(0.7px, -2px);
+    transform: translate(0.7px, calc(var(--lift, 0px) - 2px));
   }
   60% {
-    transform: translate(0, -2.5px);
+    transform: translate(0, calc(var(--lift, 0px) - 2.5px));
   }
   100% {
     transform: translate(0, -15px);
@@ -499,7 +515,7 @@
 @media (prefers-reduced-motion: reduce) {
   .group:hover .sword-pull {
     animation: none;
-    transform: translateY(-15px);
+    transform: translateY(-15px) !important;
   }
 }
 

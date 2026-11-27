@@ -13,13 +13,14 @@ import Footer from "@/components/Footer";
 import Form from "@/components/Form";
 import EscapeRope from "@/components/EscapeRope";
 import ProjectCards from "@/components/ProjectCards";
+import BadgeCase from "@/components/BadgeCase";
+import EducationPath from "@/components/EducationPath";
 import {
   Bomb,
   Fairy,
   FloatingSprites,
   PikaEar,
   PixelHeart,
-  PokeEgg,
   Pokeball,
   Potion,
   RareCandy,
@@ -27,7 +28,6 @@ import {
   Shield,
   Sparkle,
   Sword,
-  SwordPedestal,
   Thunderbolt,
   Triforce,
 } from "@/components/Whimsy";
@@ -89,38 +89,6 @@ const TONES: Record<Tone, { bubble: string; icon: string }> = {
   butter: { bubble: "bg-butter/60", icon: "text-butter-deep" },
   sky: { bubble: "bg-sky/70", icon: "text-sky-deep" },
 };
-
-const BADGES: {
-  name: string;
-  detail: string;
-  tone: Tone;
-  icon: ReactNode;
-}[] = [
-  {
-    name: "Magna Cum Laude Standing",
-    detail: "GPA 3.77 / 4.00",
-    tone: "butter",
-    icon: <Triforce className="h-6 w-7" />,
-  },
-  {
-    name: "Consistent Dean's Lister",
-    detail: "Ateneo de Manila University",
-    tone: "lav",
-    icon: <Thunderbolt className="h-8 w-8 text-butter" />,
-  },
-  {
-    name: "Director's List Scholar",
-    detail: "Top 150 Ateneo applicants",
-    tone: "sky",
-    icon: <Rupee className="h-7 w-7" />,
-  },
-  {
-    name: "DOST-SEI JLSS Merit Scholar",
-    detail: "Science scholarship",
-    tone: "lav",
-    icon: <Pokeball variant="great" className="h-8 w-8 text-sky" />,
-  },
-];
 
 /* =========================
    Reusable Components
@@ -300,7 +268,7 @@ export default function Home() {
                     <PixelHeart className="h-4 w-[18px] text-lav-400" />
                   </span>
                   <span className="font-pixel text-[9px] tracking-wider">
-                    LV. 4 · BS CS
+                    {exp >= 100 ? "LV. MAX · BS CS" : "LV. 4 · BS CS"}
                   </span>
                 </div>
 
@@ -309,7 +277,9 @@ export default function Home() {
                 <div className="mt-3 w-full max-w-xs">
                   <div className="flex items-center justify-between font-pixel text-[8px] tracking-wider text-ink-soft">
                     <span>EXP</span>
-                    <span>NEXT LV: GRADUATE</span>
+                    <span>
+                      {exp >= 100 ? "GRADUATED! ★" : "NEXT LV: GRADUATE"}
+                    </span>
                   </div>
 
                   <div
@@ -731,75 +701,7 @@ export default function Home() {
                     icon={<Shield className="h-7 w-7 text-lav-300" />}
                   />
 
-                  <div className="flex w-full flex-col items-stretch justify-center gap-8 lg:flex-row">
-                    {/* University */}
-
-                    <article className="pop-card flex-1 p-8 text-center">
-                      <span className="rounded-full bg-butter px-3 py-1 font-pixel text-[9px] tracking-wider text-ink">
-                        IN PROGRESS
-                      </span>
-
-                      <h4 className="mt-5 font-display text-2xl font-semibold text-lav-700">
-                        BS Computer Science
-                      </h4>
-
-                      <p className="mt-2 text-sm text-ink-soft">
-                        Specialization in Data Science and Analytics
-                        (DSA) and Enterprise Systems (ES)
-                      </p>
-
-                      <div className="mx-auto my-5 flex items-center justify-center gap-2">
-                        <Pokeball className="h-5 w-5 text-lav-300" />
-                        <span className="text-xs text-lav-300">▸</span>
-                        <Pokeball variant="great" className="h-5 w-5 text-sky" />
-                        <span className="text-xs text-lav-300">▸</span>
-                        <Pokeball variant="ultra" className="h-5 w-5 text-lav-600" />
-                      </div>
-
-                      <p className="font-semibold text-ink">
-                        Ateneo de Manila University
-                      </p>
-
-                      <p className="mt-2 text-sm text-ink-soft">
-                        GPA 3.77 / 4.00 · Magna Cum Laude Standing
-                      </p>
-
-                      <p className="mt-3 text-xs text-ink-soft lg:text-sm">
-                        August 2023 – Expected May 2027
-                      </p>
-                    </article>
-
-                    {/* High School */}
-
-                    <article className="pop-card flex-1 p-8 text-center">
-                      <span className="rounded-full bg-sky px-3 py-1 font-pixel text-[9px] tracking-wider text-ink">
-                        CLEARED
-                      </span>
-
-                      <h4 className="mt-5 font-display text-2xl font-semibold text-lav-700">
-                        High School Diploma
-                      </h4>
-
-                      <p className="mt-2 text-sm text-ink-soft">
-                        Academic Track: Science, Technology,
-                        Engineering, and Mathematics (STEM)
-                      </p>
-
-                      <div className="mx-auto my-5 flex items-center justify-center gap-2">
-                        <Sparkle className="h-3 w-3 text-butter-deep" />
-                        <PokeEgg className="h-6 w-6 text-sky" />
-                        <Sparkle className="h-3 w-3 text-butter-deep" />
-                      </div>
-
-                      <p className="font-semibold text-ink">
-                        Quezon City Science High School
-                      </p>
-
-                      <p className="mt-3 text-xs text-ink-soft lg:text-sm">
-                        June 2017 – July 2023
-                      </p>
-                    </article>
-                  </div>
+                  <EducationPath />
                 </div>
 
                 {/* =========================
@@ -868,80 +770,11 @@ export default function Home() {
                 eyebrow="BADGE CASE"
                 icon={<FaTrophy size={20} />}
                 label="Awards"
-                blurb="Badges collected on the journey so far. Gotta catch 'em all!"
+                blurb="Badges collected on the journey so far. Press one to see what it's for!"
               />
 
-              {/* Featured award */}
+              <BadgeCase />
 
-              <article className="group relative w-full overflow-hidden rounded-[2rem] border-[3px] border-ink bg-gradient-to-br from-butter via-[#fff3c4] to-sky p-8 shadow-[0_8px_0_var(--color-lav-300)] lg:p-10">
-                <Triforce className="pointer-events-none absolute -right-6 -top-4 h-40 w-44 text-white/40" />
-
-                <div className="relative flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:text-left">
-                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-[3px] border-ink bg-white text-butter-deep shadow-[0_5px_0_var(--color-ink)]">
-                    <FaTrophy size={34} />
-                  </div>
-
-                  <div>
-                    <span className="font-pixel text-[10px] tracking-widest text-lav-700">
-                      ★ GRAND CHAMPION ★
-                    </span>
-
-                    <p className="mt-2 text-xs font-bold italic text-lav-700">
-                      Welcome to the Hall of Fame!
-                    </p>
-
-                    <h3 className="mt-2 font-display text-2xl font-bold text-ink lg:text-3xl">
-                      Information Management Summit 2026
-                    </h3>
-
-                    <p className="mt-1 text-sm font-semibold text-ink-soft">
-                      Business Case Competition · 1st of 30+ teams
-                      nationwide
-                    </p>
-
-                    <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink/80">
-                      Architected a digital transformation roadmap for
-                      an LGU using an MDM system to centralize data
-                      across two AI-integrated modules: e-Services
-                      Modernization and Smart Disaster Risk Management.
-                    </p>
-                  </div>
-
-                  <SwordPedestal
-                    title="Legendary sword in its pedestal"
-                    className="hidden h-40 w-32 shrink-0 overflow-visible drop-shadow-[0_6px_0_rgb(94_66_156/0.25)] lg:ml-auto lg:block"
-                  />
-                </div>
-              </article>
-
-              {/* Badge grid */}
-
-              <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {BADGES.map((badge, i) => (
-                  <div
-                    key={badge.name}
-                    className="pop-card flex flex-col items-center p-6 text-center"
-                  >
-                    <span className="mb-3 font-pixel text-[8px] tracking-widest text-ink-soft">
-                      BADGE #{i + 1}
-                    </span>
-
-                    <div
-                      className={`flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-white ring-2 ring-lav-200 ${TONES[badge.tone].bubble} ${TONES[badge.tone].icon}`}
-                    >
-                      {badge.icon}
-                    </div>
-
-                    <p className="mt-4 font-display text-lg font-semibold leading-snug text-ink">
-                      {badge.name}
-                    </p>
-
-                    <p className="mt-1 text-xs text-ink-soft">
-                      {badge.detail}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </section>
 
             {/* =========================

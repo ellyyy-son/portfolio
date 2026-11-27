@@ -206,15 +206,124 @@ export function Pokeball({
   );
 }
 
-/* A legendary sword resting in its stone pedestal */
-export function SwordPedestal({ className, title }: IconProps) {
+/* =========================
+   Original pocket critters (not real Pokémon!)
+   One round body + a little feature per species.
+========================= */
+
+export type CritterKind = "cat" | "sprout" | "bun" | "horn" | "star" | "wing";
+
+export function Critter({
+  kind,
+  body,
+  className,
+  title,
+}: IconProps & { kind: CritterKind; body: string }) {
+  const outline = { stroke: INK, strokeWidth: 1.6, strokeLinejoin: "round" as const };
+
+  return (
+    <svg viewBox="0 0 32 32" className={className} {...a11y(title)}>
+      {/* features behind the body */}
+      {kind === "cat" && (
+        <g fill={body} {...outline}>
+          <polygon points="7,13 9,4 15,10" />
+          <polygon points="25,13 23,4 17,10" />
+        </g>
+      )}
+      {kind === "bun" && (
+        <g fill={body} {...outline}>
+          <ellipse cx="11" cy="7" rx="2.6" ry="6" transform="rotate(-12 11 7)" />
+          <ellipse cx="21" cy="7" rx="2.6" ry="6" transform="rotate(12 21 7)" />
+        </g>
+      )}
+      {kind === "horn" && (
+        <g fill="#fff3c4" {...outline}>
+          <path d="M9 12 7 5l6 5z" />
+          <path d="M23 12l2-7-6 5z" />
+        </g>
+      )}
+      {kind === "wing" && (
+        <g fill="#ffffff" {...outline}>
+          <path d="M6 18C1 15 1 9 4 8c2 3 4 5 5 8z" />
+          <path d="M26 18c5-3 5-9 2-10-2 3-4 5-5 8z" />
+        </g>
+      )}
+      {kind === "sprout" && (
+        <g {...outline}>
+          <path d="M16 10V4" fill="none" />
+          <path d="M16 5c-1-3-5-3-6-1 2 2 4 2 6 1z" fill="#9ddc8f" />
+          <path d="M16 6c1-3 5-3 6-1-2 2-4 2-6 1z" fill="#9ddc8f" />
+        </g>
+      )}
+      {kind === "star" && (
+        <g {...outline}>
+          <path d="M16 10V5" fill="none" />
+          <path
+            d="M16 .8l1.2 2.4 2.6.4-1.9 1.8.5 2.6L16 6.8 13.6 8l.5-2.6-1.9-1.8 2.6-.4z"
+            fill="#f2c94c"
+            strokeWidth="1"
+          />
+        </g>
+      )}
+
+      {/* body */}
+      <ellipse cx="16" cy="19.5" rx="11" ry="10" fill={body} {...outline} />
+      <ellipse cx="12.5" cy="14.5" rx="3" ry="1.6" fill="#ffffff" opacity="0.45" />
+
+      {/* face */}
+      <ellipse cx="12" cy="19" rx="1.5" ry="2" fill={INK} />
+      <ellipse cx="20" cy="19" rx="1.5" ry="2" fill={INK} />
+      <circle cx="12.5" cy="18.2" r="0.6" fill="#ffffff" />
+      <circle cx="20.5" cy="18.2" r="0.6" fill="#ffffff" />
+      <ellipse cx="8.8" cy="22" rx="1.8" ry="1.1" fill="#f6a6c1" opacity="0.7" />
+      <ellipse cx="23.2" cy="22" rx="1.8" ry="1.1" fill="#f6a6c1" opacity="0.7" />
+      <path d="M14.5 22.5q1.5 1.4 3 0" fill="none" stroke={INK} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* A humble wooden starter sword */
+export function WoodenSword({ className, title }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...a11y(title)}>
+      <path
+        d="M10.4 15V4.2L12 1.5l1.6 2.7V15z"
+        fill="#e2bd8c"
+        stroke={INK}
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      <path d="M11.4 5v8.5M12.6 7.5v5" stroke="#b98a55" strokeWidth="0.6" strokeLinecap="round" />
+      <rect x="7" y="15" width="10" height="2.2" rx="1" fill="#a87443" stroke={INK} strokeWidth="1" />
+      <rect x="11" y="17.2" width="2" height="4.3" rx="0.6" fill="#c99561" stroke={INK} strokeWidth="0.9" />
+      <circle cx="12" cy="22.3" r="1.1" fill="#a87443" stroke={INK} strokeWidth="0.8" />
+    </svg>
+  );
+}
+
+/* A legendary sword resting in its stone pedestal.
+   `lift` (0–1) raises the sword partway out of the stone. */
+export function SwordPedestal({
+  className,
+  title,
+  lift = 0,
+}: IconProps & { lift?: number }) {
   return (
     <svg viewBox="0 0 60 72" className={className} {...a11y(title)}>
       {/* glow (brightens while the sword is pulled) */}
       <ellipse className="sword-glow" cx="30" cy="30" rx="18" ry="24" fill="#c4e4ff" opacity="0.55" />
 
       {/* sword (slides up on hover; blade continues hidden inside the stone) */}
-      <g className="sword-pull">
+      <g
+        className="sword-pull"
+        style={
+          {
+            "--lift": `${-lift * 9}px`,
+            transform: "translateY(var(--lift))",
+            transition: "transform 1.5s ease-out",
+          } as React.CSSProperties
+        }
+      >
         <polygon
           points="27.5,19 32.5,19 32.5,62 27.5,62"
           fill="#eef6ff"

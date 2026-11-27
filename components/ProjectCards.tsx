@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { PointerEvent, ReactNode } from "react";
 import { SiGithub } from "react-icons/si";
 import { HiArrowUpRight } from "react-icons/hi2";
-import { PokeEgg, Pokeball, Rupee, Sparkle } from "./Whimsy";
+import { Pokeball, Rupee, Sparkle } from "./Whimsy";
 
 /* =========================
    Projects as holo trading cards
@@ -39,39 +39,40 @@ type CardProject = {
 
 /* ---------- Card art ---------- */
 
-function EggArt() {
+function ChatArt() {
   return (
-    <div className="relative flex h-full w-full items-center justify-center bg-[repeating-conic-gradient(from_0deg,var(--color-lav-100)_0deg_12deg,#ffffff_12deg_24deg)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgb(255_255_255/0.9)_0%,transparent_60%)]" />
-
-      <span className="absolute left-4 top-4 rounded-2xl rounded-bl-sm border-2 border-ink bg-white px-2 py-0.5 text-[10px] font-extrabold text-ink">
-        EN
-      </span>
-      <span className="absolute right-4 top-7 rounded-2xl rounded-br-sm border-2 border-ink bg-butter px-2 py-0.5 text-[10px] font-extrabold text-ink">
-        FIL
+    <div className="relative flex h-full w-full flex-col justify-center gap-2.5 bg-lav-50 bg-[linear-gradient(var(--color-lav-100)_1px,transparent_1px),linear-gradient(90deg,var(--color-lav-100)_1px,transparent_1px)] bg-[size:16px_16px] px-3 py-3">
+      <span className="absolute right-2 top-2 rounded-md bg-screen/85 px-1.5 py-0.5 font-pixel text-[6px] tracking-widest text-butter">
+        TAGLISH
       </span>
 
-      <div className="animate-egg relative">
-        <PokeEgg className="h-24 w-24 text-lav-300" />
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden
-          className="absolute inset-0 h-24 w-24"
-        >
-          <path
-            d="M6.5 12.5l2-1.5 1.5 1.8 2-2 1.6 1.9 1.9-1.6 2 1.4"
-            fill="none"
-            stroke="#2f2452"
-            strokeWidth="0.9"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
-        </svg>
+      {/* constructive comment */}
+      <div className="flex items-end gap-1.5">
+        <span className="h-6 w-6 shrink-0 rounded-full border-2 border-ink bg-lav-300" />
+        <div className="max-w-[78%]">
+          <p className="rounded-2xl rounded-bl-sm border-2 border-ink bg-white px-2.5 py-1 text-[10px] leading-snug text-ink">
+            Ganda ng design! Pero pwede pa i-optimize yung load time.
+          </p>
+          <span className="mt-1 inline-block rounded-full border border-ink bg-[#cdeccd] px-1.5 text-[8px] font-extrabold tracking-wide text-ink">
+            CONSTRUCTIVE ✓
+          </span>
+        </div>
       </div>
 
-      <span className="absolute bottom-2 right-2 rounded-md bg-screen/85 px-1.5 py-0.5 font-pixel text-[6px] tracking-widest text-butter">
-        HATCHING…
-      </span>
+      {/* hate speech comment */}
+      <div className="flex flex-row-reverse items-end gap-1.5">
+        <span className="h-6 w-6 shrink-0 rounded-full border-2 border-ink bg-sky" />
+        <div className="flex max-w-[78%] flex-col items-end">
+          <p className="rounded-2xl rounded-br-sm border-2 border-ink bg-white px-2.5 py-1 text-[10px] leading-snug text-ink">
+            Ang{" "}
+            <span className="inline-block h-2 w-8 translate-y-px rounded-sm bg-ink align-middle" />{" "}
+            mo, wag ka na mag-post.
+          </p>
+          <span className="mt-1 inline-block rounded-full border border-ink bg-[#f8b8d0] px-1.5 text-[8px] font-extrabold tracking-wide text-ink">
+            HATE ⚠
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -134,10 +135,10 @@ const PROJECTS: CardProject[] = [
     title:
       "Hate Speech and Constructive Criticism Classification in Code-Switched Text",
     cardName: "Code-Switch Classifier",
-    stage: "HATCHING",
+    stage: "ONGOING",
     hp: "???",
     type: { label: "NLP", tone: "lav" },
-    art: <EggArt />,
+    art: <ChatArt />,
     info: "Undergraduate Thesis · Ateneo Social Computing Lab",
     moves: [
       {
