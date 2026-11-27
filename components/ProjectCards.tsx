@@ -189,7 +189,7 @@ const PROJECTS: CardProject[] = [
     ],
     weakness: "Missing records",
     tools: ["Python", "scikit-learn"],
-    projectHref: "", // ← paste your project link here
+    projectHref: "https://dpwh.ellyson.dev/", // ← paste your project link here
   },
 ];
 

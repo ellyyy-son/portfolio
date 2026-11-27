@@ -21,10 +21,25 @@ const pixel = Press_Start_2P({
   variable: "--nf-pixel",
 });
 
+const DESCRIPTION =
+  "Elly Olegario: Computer Science student at Ateneo de Manila, specializing in data science, analytics, and enterprise systems.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ellyson.dev"),
   title: "Elly Olegario",
-  description:
-    "Elly Olegario: Computer Science student at Ateneo de Manila, specializing in data science, analytics, and enterprise systems.",
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Elly Olegario · Data & Business Analytics",
+    description: DESCRIPTION,
+    url: "https://www.ellyson.dev",
+    siteName: "Elly Olegario",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Elly Olegario · Data & Business Analytics",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
