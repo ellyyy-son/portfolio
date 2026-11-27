@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
+import { Pokeball, Triforce } from "./Whimsy";
 
 type NavLink = {
   id: string;
@@ -14,7 +15,7 @@ const LINKS: NavLink[] = [
   { id: "profile", label: "Profile" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
+  { id: "awards", label: "Awards" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -96,108 +97,90 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      {/* =========================
-          FIXED NAVBAR
-      ========================= */}
-
-      <div className="fixed left-0 top-0 z-[100] flex w-full justify-center px-4 py-4">
-
-        <nav
-          className={`flex w-full max-w-4xl items-center justify-between gap-6 rounded-2xl border px-5 py-3 transition-all duration-300 ${
-            scrolled
-              ? "border-white/20 bg-zinc-800/95 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.9)] backdrop-blur-xl"
-              : "border-white/15 bg-zinc-800/90 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.8)] backdrop-blur-lg"
-          }`}
-        >
-
-          {/* =========================
-              LOGO
-          ========================= */}
-
-          <Link
-            href="#home"
-            onClick={(e) => goTo(e, "home")}
-            className="shrink-0 text-lg font-bold tracking-tight text-white"
-          >
-            Elly<span className="text-[#00FFFF]">.</span>
-          </Link>
-
-
-          {/* =========================
-              DESKTOP LINKS
-          ========================= */}
-
-          <ul className="hidden items-center gap-1 md:flex">
-
-            {LINKS.map((link) => (
-              <li key={link.id}>
-
-                <Link
-                  href={`#${link.id}`}
-                  onClick={(e) => goTo(e, link.id)}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-                    active === link.id
-                      ? "bg-[#00FFFF] text-black shadow-[0_0_18px_-5px_#00FFFF]"
-                      : "text-white/75 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-
-              </li>
-            ))}
-
-          </ul>
-
-
-          {/* =========================
-              MOBILE BUTTON
-          ========================= */}
-
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 text-white transition-all duration-200 hover:border-[#00FFFF]/50 hover:bg-white/10 md:hidden"
-            aria-label="Toggle navigation menu"
-            aria-expanded={open}
-          >
-            {open ? (
-              <HiX size={20} />
-            ) : (
-              <HiOutlineMenu size={20} />
-            )}
-          </button>
-
-        </nav>
-
-
+    <div className="fixed left-0 top-0 z-[100] flex w-full justify-center px-4 py-4">
+      <nav
+        className={`flex w-full max-w-4xl items-center justify-between gap-6 rounded-full border-2 px-5 py-2.5 backdrop-blur-xl transition-all duration-300 ${
+          scrolled
+            ? "border-lav-300 bg-white/90 shadow-[0_6px_0_var(--color-lav-200)]"
+            : "border-lav-200 bg-white/75 shadow-[0_4px_0_var(--color-lav-200)]"
+        }`}
+      >
         {/* =========================
-            MOBILE DROPDOWN
+            LOGO
         ========================= */}
 
-        {open && (
-          <div className="absolute left-1/2 top-[4.75rem] z-[110] flex w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 flex-col gap-1 rounded-2xl border border-white/15 bg-zinc-800/95 p-3 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl md:hidden">
+        <Link
+          href="#home"
+          onClick={(e) => goTo(e, "home")}
+          className="group flex shrink-0 items-center gap-2 font-display text-xl font-bold text-ink"
+        >
+          <Triforce className="h-4 w-5 text-butter-deep transition-transform duration-500 group-hover:rotate-[360deg]" />
+          Elly<span className="-ml-1.5 text-lav-500">.</span>
+        </Link>
 
-            {LINKS.map((link) => (
+        {/* =========================
+            DESKTOP LINKS
+        ========================= */}
+
+        <ul className="hidden items-center gap-1 md:flex">
+          {LINKS.map((link) => (
+            <li key={link.id}>
               <Link
-                key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => goTo(e, link.id)}
-                className={`rounded-xl px-4 py-3 text-left text-sm font-semibold transition-all duration-200 ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
                   active === link.id
-                    ? "bg-[#00FFFF] text-black"
-                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                    ? "bg-lav-600 text-white shadow-[0_3px_0_var(--color-lav-700)]"
+                    : "text-ink-soft hover:bg-lav-100 hover:text-ink"
                 }`}
               >
+                {active === link.id && (
+                  <Pokeball className="h-3.5 w-3.5 text-butter" />
+                )}
                 {link.label}
               </Link>
-            ))}
+            </li>
+          ))}
+        </ul>
 
-          </div>
-        )}
+        {/* =========================
+            MOBILE BUTTON
+        ========================= */}
 
-      </div>
-    </>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-lav-200 text-ink transition-all duration-200 hover:bg-lav-100 md:hidden"
+          aria-label="Toggle navigation menu"
+          aria-expanded={open}
+        >
+          {open ? <HiX size={20} /> : <HiOutlineMenu size={20} />}
+        </button>
+      </nav>
+
+      {/* =========================
+          MOBILE DROPDOWN
+      ========================= */}
+
+      {open && (
+        <div className="absolute left-1/2 top-[4.75rem] z-[110] flex w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 flex-col gap-1 rounded-3xl border-2 border-lav-200 bg-white/95 p-3 shadow-[0_6px_0_var(--color-lav-200)] backdrop-blur-xl md:hidden">
+          {LINKS.map((link) => (
+            <Link
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => goTo(e, link.id)}
+              className={`rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-200 ${
+                active === link.id
+                  ? "bg-lav-600 text-white"
+                  : "text-ink-soft hover:bg-lav-100 hover:text-ink"
+              }`}
+            >
+              {active === link.id ? "▸ " : ""}
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
