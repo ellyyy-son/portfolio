@@ -34,18 +34,17 @@ type Experience = {
 
 const professionalExperience: Experience[] = [
   {
-    date: "September 2026 – Present",
+    date: "September 2026 – December 2026",
     title: "Personal Care – Integrated Planning Intern",
     short: "Unilever",
     program: "Business Week 2026",
     company: "Unilever Philippines Inc.",
     location: "Taguig City, PH",
-    current: true,
     marker: <Potion className="h-5 w-5 text-lav-300" />,
     description: [
       "Selected as 1 of only 35 participants from 6,000+ applicants nationwide for Unilever Philippines' Business Week 2026.",
-      "Developing an end-to-end process playbook for the Personal Care Innovations Unit, documenting core workflows, cross-team handoffs, and system touchpoints, identifying pain points and recommending process improvements.",
-      "Spearheading automation of recurring supply chain reporting, replacing manual data pulls and dashboard rebuilds with repeatable workflows that standardize outputs and cut turnaround time for the planning team.",
+      "Developed a 200+ page end-to-end process playbook for the Personal Care Innovations Unit, mapping 70+ process steps across 15+ teams; identified around 20 pain points and recommended targeted process improvements.",
+      "Spearheaded the planning team's automation efforts by building tools in Microsoft Power Platform (Apps and Automate) and Microsoft Copilot agents now in daily team use, reducing task turnaround time by 95%.",
     ],
   },
 
@@ -59,9 +58,9 @@ const professionalExperience: Experience[] = [
     marker: <Shield className="h-5 w-5 text-sky" />,
     description: [
       "Selected as 1 of only 22 students nationwide from thousands of applicants to join Batch 6 of Shopee Philippines' Apprentice Program.",
-      "Leveraged SQL and Python to extract, join, and analyze complex datasets spanning user, financial, listing, and behavioral data, enabling scalable pattern discovery to support fraud detection efforts.",
+      "Leveraged SQL and Python to extract, join, and analyze 100M+ records spanning user, financial, listing, and behavioral data to uncover fraud patterns.",
       "Researched, designed, and proposed novel fraud detection rules using linkage signals and account behavior to surface prohibited listings and bad actors evading existing detection, flagging 3,000+ high-risk seller accounts.",
-      "Manually reviewed a sample of flagged accounts to assess rule precision and feasibility, confirming detection of fraud missed by existing rules and documenting findings for the fraud team.",
+      "Validated rule precision through manual review of flagged accounts, confirming fraud missed by existing rules and documenting findings for the fraud team.",
       "Offered a fast track for the Shopee Graduate Development Program (GDP) application based on internship performance.",
     ],
   },
@@ -439,9 +438,13 @@ export default function AdventureLog() {
                 {quest.date}
               </span>
 
-              {quest.current && (
+              {quest.current ? (
                 <span className="rounded-full bg-butter px-3 py-1 font-pixel text-[9px] tracking-wider text-ink">
                   ★ QUEST ACTIVE
+                </span>
+              ) : (
+                <span className="rounded-full bg-[#cdeccd] px-3 py-1 font-pixel text-[9px] tracking-wider text-ink">
+                  ✓ QUEST CLEARED
                 </span>
               )}
             </div>
