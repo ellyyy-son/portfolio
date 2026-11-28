@@ -62,6 +62,7 @@ const professionalExperience: Experience[] = [
       "Leveraged SQL and Python to extract, join, and analyze complex datasets spanning user, financial, listing, and behavioral data, enabling scalable pattern discovery to support fraud detection efforts.",
       "Researched, designed, and proposed novel fraud detection rules using linkage signals and account behavior to surface prohibited listings and bad actors evading existing detection, flagging 3,000+ high-risk seller accounts.",
       "Manually reviewed a sample of flagged accounts to assess rule precision and feasibility, confirming detection of fraud missed by existing rules and documenting findings for the fraud team.",
+      "Offered a fast track for the Shopee Graduate Development Program (GDP) application based on internship performance.",
     ],
   },
 ];

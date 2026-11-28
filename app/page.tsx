@@ -42,7 +42,7 @@ import { FaTrophy } from "react-icons/fa6";
 const DIALOGUE = [
   "A wild Elly appeared!",
   "Elly used SQL! It's super effective!",
-  "It's dangerous to go alone! Take this: the CV button below.",
+  "It's dangerous to go alone! Take this: the Resume button below.",
   "You found a Small Key! It opens the Quest Log below.",
   "What? Elly is evolving! ...into a CS graduate in May 2027!",
   "Elly ate a Rare Candy! Elly learned PySpark!",
@@ -303,7 +303,7 @@ export default function Home() {
                     variant="primary"
                     icon={<Triforce className="h-3.5 w-4 text-butter" />}
                   >
-                    View CV
+                    View Resume
                   </PillLink>
 
                   <Socials />
