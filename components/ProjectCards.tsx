@@ -77,38 +77,53 @@ function ChatArt() {
   );
 }
 
-function MusicArt() {
-  const bars = [
-    { h: 38, c: "#cdb6fa" },
-    { h: 62, c: "#f8b8d0" },
-    { h: 48, c: "#a9d6ff" },
-    { h: 78, c: "#ffe58f" },
-    { h: 56, c: "#b5e8c8" },
-    { h: 70, c: "#cdb6fa" },
-    { h: 42, c: "#ffc9a3" },
-  ];
-
+/* A song drawn as a "sun": 8 rays (one per audio feature) + a little face */
+function SongSun({ rays, ray }: { rays: number[]; ray: string }) {
   return (
-    <div className="relative flex h-full w-full items-end justify-center gap-2 bg-gradient-to-b from-[#fff3c4] via-white to-lav-50 px-5 pb-4 pt-8">
-      {/* stage spotlight */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-full w-40 -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgb(255_255_255/0.95),transparent_70%)]" />
+    <svg viewBox="0 0 80 80" className="h-24 w-24" aria-hidden>
+      {rays.map((len, i) => {
+        const a = (i * Math.PI) / 4 - Math.PI / 2;
+        const r0 = 20;
+        const r1 = r0 + len;
+        return (
+          <line
+            key={`ray-${i}`}
+            x1={40 + Math.cos(a) * r0}
+            y1={40 + Math.sin(a) * r0}
+            x2={40 + Math.cos(a) * r1}
+            y2={40 + Math.sin(a) * r1}
+            stroke={ray}
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        );
+      })}
+      <circle cx="40" cy="40" r="15" fill="#ffe58f" stroke="#2f2452" strokeWidth="2.5" />
+      <circle cx="34.5" cy="37.5" r="1.9" fill="#2f2452" />
+      <circle cx="45.5" cy="37.5" r="1.9" fill="#2f2452" />
+      <path d="M33.5 43.5q6.5 6 13 0" fill="none" stroke="#2f2452" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="31" cy="42.5" rx="2" ry="1.2" fill="#f6a6c1" opacity="0.8" />
+      <ellipse cx="49" cy="42.5" rx="2" ry="1.2" fill="#f6a6c1" opacity="0.8" />
+    </svg>
+  );
+}
 
-      {/* floating notes */}
-      <span className="absolute left-4 top-3 text-xl font-bold text-lav-500">♪</span>
-      <span className="absolute right-6 top-5 text-lg font-bold text-sky-deep">♫</span>
-      <span className="absolute left-1/2 top-2 -translate-x-1/2 text-base font-bold text-[#f2a0bf]">♥</span>
+function SunMatchArt() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-1 bg-gradient-to-b from-[#fff3c4] via-white to-lav-50 px-2">
+      <SongSun rays={[14, 9, 16, 7, 12, 15, 8, 11]} ray="#b89cf2" />
 
-      {/* equalizer */}
-      {bars.map((bar, i) => (
-        <span
-          key={i}
-          className="relative w-5 rounded-t-lg border-2 border-ink"
-          style={{ height: `${bar.h}%`, background: bar.c }}
-        />
-      ))}
+      <div className="flex flex-col items-center gap-1">
+        <span className="text-base font-bold text-lav-500">♪</span>
+        <span className="rounded-full border-2 border-ink bg-white px-2 py-0.5 text-[10px] font-extrabold text-ink">
+          91 MATCH
+        </span>
+      </div>
+
+      <SongSun rays={[13, 10, 15, 8, 12, 14, 9, 12]} ray="#6aaeea" />
 
       <span className="absolute bottom-2 right-2 rounded-md bg-screen/85 px-1.5 py-0.5 font-pixel text-[6px] tracking-widest text-butter">
-        ON AIR
+        TUGMA
       </span>
     </div>
   );
@@ -229,34 +244,34 @@ const PROJECTS: CardProject[] = [
     projectHref: "https://dpwh.ellyson.dev/", // ← paste your project link here
   },
   {
-    title: "PPop Insights Dashboard",
-    cardName: "PPop Insights",
+    title: "tugma: PPop Song Recommendation System",
+    cardName: "tugma",
     stage: "CLEARED",
-    hp: "15",
-    type: { label: "VIZ", tone: "butter" },
-    art: <MusicArt />,
-    info: "Social & Music Analytics · 15 PPop Groups",
+    hp: "588",
+    type: { label: "MUSIC", tone: "butter" },
+    art: <SunMatchArt />,
+    info: "Song Recommender · 588 songs · 90 artists",
     moves: [
       {
-        name: "Fan Engagement",
-        cost: 2,
-        desc: "Visualizes social media engagement across 15 PPop idol groups.",
+        name: "Cosine Match",
+        cost: 3,
+        damage: "TOP 10",
+        desc: "Finds any song's 10 closest soundalikes from 8 z-scored audio features.",
       },
       {
-        name: "Audio Features",
+        name: "Vibe Mixer",
         cost: 2,
-        desc: "Explores the musical characteristics behind each group's songs.",
+        desc: "Eight sliders build a custom sound, then match it to real songs.",
       },
       {
-        name: "Filter Beam",
-        cost: 1,
-        desc: "Interactive charts and filters for digging into the data.",
+        name: "Sound Galaxy",
+        cost: 2,
+        desc: "PCA maps every song as a star. Close stars sound alike.",
       },
     ],
-    weakness: "Group hiatuses",
-    tools: ["Python", "Pandas", "Streamlit"],
+    weakness: "30-second previews",
+    tools: ["Next.js", "ReccoBeats API"],
     projectHref: "https://ppop.ellyson.dev/",
-    githubHref: "https://github.com/ellyyy-son/ppop-dashboard",
   },
 ];
 
