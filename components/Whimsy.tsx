@@ -5,7 +5,7 @@
    Poké/Great/Ultra Ball, thunderbolt, egg, rare candy, sparkle
 ========================= */
 
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
 
 const INK = "#2f2452";
 
@@ -469,11 +469,22 @@ const SPRITES: {
 export function FloatingSprites() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 hidden md:block">
-      {SPRITES.map(({ Icon, className, iconClass, delay }, i) => (
-        <div key={i} className={`absolute animate-float ${className}`} style={{ animationDelay: delay }}>
-          <Icon className={`h-full w-full ${iconClass ?? ""}`} />
-        </div>
-      ))}
+      {SPRITES.map(({ Icon, className, iconClass, delay }, i) => {
+        // Give every sprite its own pace and wander so they don't move in sync.
+        const dir = i % 2 === 0 ? 1 : -1;
+        const style = {
+          "--dur": `${10 + ((i * 7) % 6)}s`,
+          "--dx": `${dir * (12 + ((i * 5) % 8))}px`,
+          "--dy": `${14 + ((i * 3) % 9)}px`,
+          "--rot": `${dir * (8 + ((i * 4) % 8))}deg`,
+          animationDelay: `-${delay}`,
+        } as CSSProperties;
+        return (
+          <div key={i} className={`sprite-drift absolute ${className}`} style={style}>
+            <Icon className={`h-full w-full ${iconClass ?? ""}`} />
+          </div>
+        );
+      })}
     </div>
   );
 }
