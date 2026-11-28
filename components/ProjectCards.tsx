@@ -10,7 +10,7 @@ import { Pokeball, Rupee, Sparkle } from "./Whimsy";
    Projects as holo trading cards
 ========================= */
 
-type Tone = "lav" | "sky";
+type Tone = "lav" | "sky" | "butter";
 
 type Move = {
   name: string;
@@ -73,6 +73,43 @@ function ChatArt() {
           </span>
         </div>
       </div>
+    </div>
+  );
+}
+
+function MusicArt() {
+  const bars = [
+    { h: 38, c: "#cdb6fa" },
+    { h: 62, c: "#f8b8d0" },
+    { h: 48, c: "#a9d6ff" },
+    { h: 78, c: "#ffe58f" },
+    { h: 56, c: "#b5e8c8" },
+    { h: 70, c: "#cdb6fa" },
+    { h: 42, c: "#ffc9a3" },
+  ];
+
+  return (
+    <div className="relative flex h-full w-full items-end justify-center gap-2 bg-gradient-to-b from-[#fff3c4] via-white to-lav-50 px-5 pb-4 pt-8">
+      {/* stage spotlight */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-full w-40 -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgb(255_255_255/0.95),transparent_70%)]" />
+
+      {/* floating notes */}
+      <span className="absolute left-4 top-3 text-xl font-bold text-lav-500">♪</span>
+      <span className="absolute right-6 top-5 text-lg font-bold text-sky-deep">♫</span>
+      <span className="absolute left-1/2 top-2 -translate-x-1/2 text-base font-bold text-[#f2a0bf]">♥</span>
+
+      {/* equalizer */}
+      {bars.map((bar, i) => (
+        <span
+          key={i}
+          className="relative w-5 rounded-t-lg border-2 border-ink"
+          style={{ height: `${bar.h}%`, background: bar.c }}
+        />
+      ))}
+
+      <span className="absolute bottom-2 right-2 rounded-md bg-screen/85 px-1.5 py-0.5 font-pixel text-[6px] tracking-widest text-butter">
+        ON AIR
+      </span>
     </div>
   );
 }
@@ -191,6 +228,36 @@ const PROJECTS: CardProject[] = [
     tools: ["Python", "scikit-learn"],
     projectHref: "https://dpwh.ellyson.dev/", // ← paste your project link here
   },
+  {
+    title: "PPop Insights Dashboard",
+    cardName: "PPop Insights",
+    stage: "CLEARED",
+    hp: "15",
+    type: { label: "VIZ", tone: "butter" },
+    art: <MusicArt />,
+    info: "Social & Music Analytics · 15 PPop Groups",
+    moves: [
+      {
+        name: "Fan Engagement",
+        cost: 2,
+        desc: "Visualizes social media engagement across 15 PPop idol groups.",
+      },
+      {
+        name: "Audio Features",
+        cost: 2,
+        desc: "Explores the musical characteristics behind each group's songs.",
+      },
+      {
+        name: "Filter Beam",
+        cost: 1,
+        desc: "Interactive charts and filters for digging into the data.",
+      },
+    ],
+    weakness: "Group hiatuses",
+    tools: ["Python", "Pandas", "Streamlit"],
+    projectHref: "https://ppop.ellyson.dev/",
+    githubHref: "https://github.com/ellyyy-son/ppop-dashboard",
+  },
 ];
 
 /* ---------- Pieces ---------- */
@@ -203,6 +270,10 @@ const TONE: Record<Tone, { card: string; energy: string }> = {
   sky: {
     card: "bg-gradient-to-b from-sky via-sky/50 to-white",
     energy: "bg-sky-deep",
+  },
+  butter: {
+    card: "bg-gradient-to-b from-butter via-[#fff3c4] to-white",
+    energy: "bg-butter-deep",
   },
 };
 
@@ -396,7 +467,7 @@ function TradingCard({
 
 export default function ProjectCards() {
   return (
-    <div className="flex w-full flex-col items-center gap-10 md:grid md:grid-cols-[repeat(2,22rem)] md:items-stretch md:justify-center md:gap-x-6 md:gap-y-5">
+    <div className="flex w-full flex-col items-center gap-10 md:grid md:grid-cols-[repeat(2,minmax(0,22rem))] md:items-stretch md:justify-center md:gap-x-6 md:gap-y-5 xl:grid-cols-[repeat(3,minmax(0,22rem))]">
       {PROJECTS.map((project, i) => (
         <TradingCard
           key={project.title}
