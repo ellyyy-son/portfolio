@@ -297,14 +297,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mt-5 inline-flex items-center gap-2 rounded-full border-2 border-lav-200 bg-white px-4 py-2 text-xs text-ink-soft lg:text-sm">
-                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-butter-deep" />
-                  Currently:
-                  <span className="font-semibold text-ink">
-                    Integrated Planning Intern @ Unilever
-                  </span>
-                </div>
-
                 <div className="mt-8 flex flex-col items-center justify-center gap-5 sm:flex-row lg:justify-start">
                   <PillLink
                     href="/resume.pdf"
